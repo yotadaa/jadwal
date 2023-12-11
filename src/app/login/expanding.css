@@ -1,0 +1,49 @@
+.expanding-background-a {
+    position: relative;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.expanding-background-a::before {
+    content: '';
+    position: absolute;
+    top: 2.8rem;
+    right: 2.8rem;
+    transform: translate(50%, -50%);
+    width: 1000%;
+    height: 1000%;
+    background-color: #6B7280;
+    border-radius: 100%;
+    animation: expand 1s ease-in-out;
+}
+
+.expanding-background-b {
+    position: relative;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.expanding-background-b::before {
+    content: '';
+    position: absolute;
+    top: 2.8rem;
+    right: 2.8rem;
+    transform: translate(50%, -50%);
+    width: 1000%;
+    height: 1000%;
+    background-color: #E5E7EB;
+    border-radius: 100%;
+    animation: expand 1s ease-in-out;
+}
+
+@keyframes expand {
+    from {
+        width: 0;
+        height: 0;
+    }
+
+    to {
+        width: 1000%;
+        height: 1000%;
+    }
+}

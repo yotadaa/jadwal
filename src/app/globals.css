@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #ddd;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #333;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #ddd;
+}
+
+
+@keyframes animate-up {
+  0% {
+    bottom: -250px;
+  }
+
+  100% {
+    bottom: 0px;
+  }
+}
+
+@keyframes animate-down {
+  100% {
+    bottom: -350px;
+    display: none;
+  }
+
+  0% {
+    bottom: -100px;
+  }
+}
+
+.animate-down {
+  animation: animate-down .5s ease-in-out forwards;
+  display: flex;
+}
+
+@keyframes animate-down-s {
+  100% {
+    bottom: -450px;
+    display: none;
+  }
+
+  0% {
+    bottom: 0px;
+  }
+}
+
+.animate-down-s {
+  animation: animate-down-s .5s ease-in-out forwards;
+  display: flex;
+}
+
+.popup-dialog {
+  position: absolute;
+  bottom: 0px;
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  animation: animate-up .5s ease-in-out forwards;
+  box-shadow: 0 0 5px gray;
+}
+
+
+
+@keyframes fading {
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.notif-dialog {
+  display: flex;
+  /* Initial display setting */
+  animation: fading 1s ease-out forwards;
+  /* Use "forwards" to retain styles after animation */
+}
+
+
+@keyframes swells {
+  0% {
+    scale: 1;
+  }
+
+  100% {
+    scale: 1.1;
+  }
+}
+
+.loading-dialog:hover {
+  scale: 1.1;
+  animation: swells .2s ease-in-out;
+}
+
+.loading {
+  animation: rotate-360-deg 1s linear infinite;
+}
+
+@keyframes rotate-360-deg {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-45-deg {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+.settings:hover {
+  transform: rotate(45deg);
+  animation: rotate-45-deg .2s ease-out;
+}
+
+.swelling {
+  position: absolute;
+  right: 2.8rem;
+  top: 2.8rem;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 100%;
+  z-index: -1;
+  scale: 110;
+}
+
+@keyframes move-up {
+  0% {
+    top: 15px;
+    display: none;
+  }
+
+  100% {
+    top: 0px;
+    display: block;
+  }
+}
+
+.login-email {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.login-email::before {
+  position: relative;
+  margin-left: 20px;
+  font-size: 14px;
+  content: "Email";
+  display: none;
+  animation: move-up .4s ease-in;
+  color: black;
+}
+
+/* Define the animation for moving right to left */
+@keyframes moveRightToLeft {
+  from {
+    transform: translateX(0px);
+  }
+
+  to {
+    transform: translateX(-432px);
+  }
+}
+
+/* Apply the animation class when needed */
+.animate-right-to-left {
+  animation: moveRightToLeft 5s linear infinite;
+  /* Adjust the duration and timing function as needed */
+}
+
+/* Additional styles for the container to hide overflow */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+@keyframes round-swells {
+  from {
+    width: 0%;
+    height: 0%;
+    background-color: #dfdfdf;
+  }
+
+  to {
+    width: 100%;
+    height: 100%;
+    background-color: #dfdfdf;
+  }
+}
+
+.hover-round {
+  position: relative;
+  display: inline-block;
+  /* Make sure the container wraps around the image */
+}
+
+.hover-round::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  /* Center vertically */
+  left: 50%;
+  /* Center horizontally */
+  transform: translate(-50%, -50%);
+  /* Center the element */
+  animation: round-swells .3s ease-in-out forwards;
+  width: 100%;
+  height: 100%;
+  background-color: #c0c0c0;
+  border-radius: 50%;
+  z-index: 100;
+  /* Send the circle behind the image */
+}
+
+.hover-round img {
+  position: relative;
+  /* Ensure the image stays on top of the circle */
+  z-index: 110;
+  /* Place the image above the circle */
+}
