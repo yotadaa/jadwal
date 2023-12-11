@@ -1,0 +1,41 @@
+{
+  "name": "jadwal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "antd": "^5.12.1",
+    "axios": "^1.6.2",
+    "bcrypt": "^5.1.1",
+    "cookie": "^0.6.0",
+    "crypto": "^1.0.1",
+    "dayjs": "^1.11.10",
+    "idb": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "moment": "^2.29.4",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.2",
+    "next": "^14.0.3",
+    "next-auth": "^4.24.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-ios-time-picker": "^0.2.2",
+    "react-timeit": "^1.2.12",
+    "react-toggle-dark-mode": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
