@@ -12,7 +12,8 @@ import TaskAdd from './task-form';
 
 export default function Page() {
 
-    const isLogin = getValue('login') || false;
+    const [isLogin, setIsLogin] = useState(false);
+    useEffect(() => setIsLogin(getValue('login')), []);
     const user = decodeToken();
     const router = useRouter();
 
@@ -156,7 +157,7 @@ export default function Page() {
         >
             <div className='flex flex-col items-center justify-center p-5 pl-3 pt-0 pb-0 ml-2'>
                 <div className='p-3 rounded-xl font-extrabold flex justify-start items-center w-full bg-white m-5'>
-                    {context.currentTugasMenu === -1 ? "Kamu" : <span className="text-amber-500">{context.friendName || getValue("current-friend-name")}&nbsp;</span>} {context.tugas.length > 0 ? `punya ${context.tugas.length}` : "tidak punya"} tugas
+                    {context.currentTugasMenu === -1 ? "Kamu" : <span className="text-amber-500">{context.friendName}&nbsp;</span>} {context.tugas.length > 0 ? `punya ${context.tugas.length}` : "tidak punya"} tugas
                 </div>
             </div >
             <div className='flex flex-col items-center justify-center p-5 pl-3 pt-0 border-l-2 border-dashed pb-0 ml-2 border-gray-500'>
