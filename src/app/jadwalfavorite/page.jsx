@@ -10,9 +10,6 @@ import Head from 'next/head';
 import Menu from '../components/left-bar';
 import JadwalForm from '../lihatjadwal/jadwal-form';
 export default function Page() {
-
-    const isLogin = getValue('login') || false;
-    const user = decodeToken();
     const router = useRouter();
 
     const context = useContext(AppContext);
@@ -167,9 +164,9 @@ export default function Page() {
     }
 
 
-    if (isLogin && user) {
+    if (context.isLogin) {
         useEffect(() => {
-            
+
         }, [context.jadwal]);
         return (
             <>

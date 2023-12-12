@@ -12,9 +12,6 @@ import TaskAdd from './task-form';
 
 export default function Page() {
 
-    const [isLogin, setIsLogin] = useState(false);
-    useEffect(() => setIsLogin(getValue('login')), []);
-    const user = decodeToken();
     const router = useRouter();
 
     const context = useContext(AppContext);

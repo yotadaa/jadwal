@@ -1,11 +1,11 @@
 'use client'
 import { useContext, useEffect, useState } from "react";
-import Search from "../components/search";
 import AppContext from "../api/context/AppContext";
-import { getWaktu, epochToFormattedDatetime } from "../api/context/functionality";
+import { getWaktu, epochToFormattedDatetime, getValue } from "../api/context/functionality";
 import ProcessingAnimation from "../components/processing";
 import JadwalForm from "../lihatjadwal/jadwal-form";
 import TaskAdd from "../tugas/task-form";
+import { useRouter } from "next/navigation";
 
 export default function searchPage() {
     const [isHover, setIsHover] = useState(false);
@@ -21,6 +21,7 @@ export default function searchPage() {
     const [currentTugas, setCurrentTugas] = useState({});
     const [showJadwalForm, setShowJadwalForm] = useState(false);
     const [showTaskAdd, setShowTaskAdd] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         context.setRightBar(<div></div>)
@@ -35,7 +36,7 @@ export default function searchPage() {
         }
     }, [context.user])
 
-    return (
+    if (context.isLogin) return (
         <div className="relative p-2">
             <div className=" bg-white p-2 shadow-lg rounded-md "
             >
@@ -338,4 +339,12 @@ export default function searchPage() {
             <TaskAdd component={{ showTaskAdd, setShowTaskAdd, }} edit={true} task={currentTugas} />
         </div>
     )
+    else {
+        return (
+            <div>
+                You are not yet logged in, go to <a href="/login">Login Page</a>
+            </div>
+        )
+    }
+    // else router.push("/login")
 }

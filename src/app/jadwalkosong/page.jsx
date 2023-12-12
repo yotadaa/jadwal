@@ -1,7 +1,7 @@
 'use client';
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../api/context/AppContext";
-import { getWaktu } from "../api/context/functionality";
+import { getValue, getWaktu } from "../api/context/functionality";
 
 export default function Home() {
 

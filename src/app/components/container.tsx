@@ -22,8 +22,8 @@ export default function Container({ children }: PropsLayout) {
     const [currentColor, setCurrentColor] = useState(light);
 
 
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    const [windowWidth, setWindowWidth] = useState(900);
+    const [windowHeight, setWindowHeight] = useState(675);
 
     useEffect(() => {
         const trackWindowSize = () => {

@@ -27,8 +27,25 @@ export default function TugasBar() {
 
     return (
         <div className='p-2'>
-            
+
             {context.showCari ? <Search /> : <div></div>}
+            <div className='font-semibold bg-white shadow-xl mt-2 p-2 rounded-lg text-xs flex items-center justify-start py-3 px-3 gap-2'>
+                <div>
+                    {context.user && context.profilePicture.map((item, index) => {
+                        if (context.user.profile === item.name) return (
+                            <div key={index}>
+                                <img src={item.href}
+                                    width={60}
+                                    className='rounded-full hover:opacity-80 shadow-md select-none cursor-pointer'
+                                />
+                            </div>
+                        )
+                    })}
+                </div>
+                <div>
+                    <div className='text-base font-semibold'>{context.user.firstName || ""}</div>
+                </div>
+            </div>
             <div className='bg-blue-300 hover:font-bold mt-2 p-2 rounded-lg text-xs flex items-center justify-start py-3 gap-3 shadow-lg cursor-pointer select-none hover:opacity-80'
                 onClick={() => {
                     setShowTaskAdd(true);

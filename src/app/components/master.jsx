@@ -14,7 +14,10 @@ export default function Master({ children }) {
     const [windowHeight, setWindowHeight] = useState(0);
     const [currentColor, setCurrentColor] = useState(light);
     const [initialShow, setInitialShow] = useState(false);
-    const [currentPath, setCurrentPath] = useState(window.location.pathname);
+    const [currentPath, setCurrentPath] = useState("");
+    useEffect(() => {
+        setCurrentPath(window.location.pathname);
+    }, [currentPath])
     const [show, setShow] = useState(false);
 
     useEffect(() => {

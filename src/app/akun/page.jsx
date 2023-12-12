@@ -6,15 +6,13 @@ import { decodeToken, getValue, storeValue } from '../api/context/functionality'
 import AppContext from '../api/context/AppContext';
 import Settings from './settings';
 import ProcessingAnimation from '../components/processing';
+import FriendBar from '../components/friendBar';
 import Notification from '../components/notification';
+import Menu from "../components/left-bar"
 // import LogoutConfirmation from '../components/logout-dialog';
 
 export default function Home() {
-    const isLogin = getValue('login') || false;
-    const user = decodeToken();
-    const { firstName, email } = user;
     const router = useRouter();
-    const [nama, setNama] = useState(user.firstName);
     const [password, setPassword] = useState("");
     const [modifyNama, setModifyNama] = useState(true);
     const [modifyPassword, setModifyPassword] = useState(true);
@@ -23,6 +21,8 @@ export default function Home() {
     const [showProcessing, setShowProcessing] = useState(false);
     const context = useContext(AppContext);
     const [initialShow, setInitialShow] = useState(false);
+    const { firstName, email } = context.user;
+    const [nama, setNama] = useState(context.user.firstName);
 
 
     const [notif, setNotif] = useState([]);
@@ -159,15 +159,18 @@ export default function Home() {
     useEffect(() => {
         // if (!context.user)
         // getDepedencies();
+        context.setCurrentMenu(4)
     }, [])
 
     useEffect(() => {
+        context.setLeftBar(<Menu />)
+        context.setRightBar(<FriendBar />)
         if (!context.isLogin) {
             router.push("/login");
         }
     }, []); // Add isLogin and user to the dependency array
 
-    return (
+    if (context.isLogin) return (
         <div
         >
             <div className='p-1 bg-emerald-200 shadow-md relative rounded-xl mt-5'

@@ -61,10 +61,23 @@ export function getCurrentTimeInSeconds() {
     return currentTimestampInSeconds;
 }
 
+export function checkLocalStorage(key) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+        try {
+            const value = localStorage.getItem(key);
+            if (value !== null) {
+                return JSON.parse(value);
+            }
+        } catch (error) {
+            console.error(`Failed to retrieve value from localStorage for key "${key}":`, error);
+        }
+    }
+    return null;
+}
+
 export function decodeToken() {
-    const isLogin = getValue('login') || false;
-    const loginInfo = isLogin ? getValue('login-token') : {};
+    const isLogin = checkLocalStorage('login') || false;
+    const loginInfo = isLogin ? checkLocalStorage('login-token') : {};
     // console.log(loginInfo + " this is the token");
     return isLogin ? jwtDecode(loginInfo)._doc : {};
-
 }

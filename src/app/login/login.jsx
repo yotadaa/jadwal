@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, useContext } from 'react';
 import Link from 'next/link';
-import Container from '../components/container';
 import { color } from '../components/environment';
 import AppContext from '../api/context/AppContext';
 import ToggleTheme from '../components/toggle-button';
@@ -12,8 +11,8 @@ import './expanding.css';
 
 export default function Login() {
     const router = useRouter();
-
-    const isLogin = getValue('login') || false;
+    const [isLogin, setIsLogin] = useState(false);
+    useEffect(() => setIsLogin(getValue('login')), []);
     const user = decodeToken();
 
     const context = useContext(AppContext);
@@ -28,7 +27,8 @@ export default function Login() {
     const [processing, setProcessing] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const [toggleTheme, setToggleTheme] = useState(getValue('current-theme') || true);
+    const [toggleTheme, setToggleTheme] = useState(true);
+    useEffect(() => setToggleTheme(getValue('current-theme')), []);
 
     const submitForm = async (event) => {
         event.preventDefault();
@@ -86,7 +86,7 @@ export default function Login() {
         console.log(context.leftBar)
     }, [context.rightBar, context.leftBar])
 
-    return (
+    if (!context.isLogin) return (
         <div
             ref={parent}
             className={`flex items-center justify-center ${currentColor['latar']} w-full h-full`}
@@ -159,4 +159,11 @@ export default function Login() {
             </form>
         </div>
     )
+    else {
+        return (
+            <div>
+                <div>You have logged in, go to <a className='text-red-500' href="/akun">Akun page</a></div>
+            </div>
+        )
+    }
 }

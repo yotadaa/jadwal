@@ -30,10 +30,17 @@ export default function Menu() {
                             context.setCurrentLink(item.target);
                             context.setPaddingTugas(0);
                             if (index === 3) {
-                                context.setRightBar(<TugasBar />)
-                                context.getTugas(context.user.email);
-                                context.setFriendName(context.user.firstName)
-                                context.setCurrentTugasMenu(-1)
+                                try {
+                                    context.setShowProcessing(true)
+                                    context.setRightBar(<TugasBar />)
+                                    // context.getTugas(context.user.email);
+                                    context.setFriendName(context.user.firstName)
+                                    context.setCurrentTugasMenu(-1)
+                                } catch (err) {
+
+                                } finally {
+                                    context.setShowProcessing(false)
+                                }
                             }
                             else if (index === 4 && index !== context.currentMenu) {
                                 context.setRightBar(<FriendBar />)

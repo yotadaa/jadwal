@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, useContext } from 'react';
 import Link from 'next/link';
-import Container from "../components/container";
 import { color } from '../components/environment';
 import AppContext from '../api/context/AppContext';
 import ToggleTheme from '../components/toggle-button';
@@ -17,14 +16,14 @@ export default function Daftar() {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const emailRef = useRef(null);
-    const emailLabel = useRef(null);
     const [error, setError] = useState("");
     const [processing, setProcessing] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const { light, dark } = color;
-    const [toggleTheme, setToggleTheme] = useState(getValue('current-theme') || true);
+    const [toggleTheme, setToggleTheme] = useState(true);
+    useEffect(() => setToggleTheme(getValue('current-theme')), []);
     const [currentColor, setCurrentColor] = useState(light);
 
     const changeTheme = () => {
@@ -99,7 +98,7 @@ export default function Daftar() {
         }
     }, [password, passwordConfirm])
 
-    return (
+    if (!context.isLogin) return (
         <div className={`flex items-center justify-center ${currentColor['latar']} w-full h-full`}>
             <div className='absolute right-10 top-10'>
                 <ToggleTheme />
@@ -193,6 +192,11 @@ export default function Daftar() {
                     <Link href="/login" className={`hover:text-red-600 ${currentColor['form-text']}`}>Sudah  punya akun?</Link>
                 </div>
             </form>
+        </div>
+    )
+    else return (
+        <div>
+            <div>You have logged in, go to <a className='text-red-500' href="/akun">Akun page</a></div>
         </div>
     )
 }

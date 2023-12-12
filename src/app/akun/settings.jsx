@@ -1,6 +1,6 @@
 
 import ToggleTheme from '../components/toggle-button';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AppContext from '../api/context/AppContext';
 import { storeValue, relog } from '../api/context/functionality';
 import LogoutConfirmation from '../components/logout-dialog';
@@ -12,6 +12,9 @@ export default function Settings() {
     const [showProfile, setShowProfile] = useState(false);
 
     const style = 'bg-emerald-300 hover:shadow-lg mb-2 p-1 rounded-full px-2 cursor-pointer select-none hover:opacity-80'
+    useEffect(() => {
+        storeValue("current-theme", !context.theme)
+    }, [context.theme])
 
     return (
         <>
@@ -26,7 +29,6 @@ export default function Settings() {
                 <div className={`${style} ${context.theme ? "bg-teal-400" : "bg-teal-400"} border border-black`}
                     onClick={() => {
                         context.setTheme(!context.theme);
-                        storeValue("current-theme", !context.theme)
                     }}
                 >
                     Mode {context.theme ? "Terang" : "Gelap"}

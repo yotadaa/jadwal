@@ -11,7 +11,6 @@ import Menu from './components/left-bar';
 import JadwalForm from './lihatjadwal/jadwal-form';
 export default function Page() {
 
-  const isLogin = getValue('login') || false;
   const user = decodeToken();
   const router = useRouter();
 
@@ -167,11 +166,8 @@ export default function Page() {
   }
 
 
-  if (isLogin && user) return (
+  if (context.isLogin) return (
     <>
-      <Head>
-        <title>Jadwalku</title>
-      </Head>
       <div
       >
         <div>
@@ -367,7 +363,12 @@ export default function Page() {
     </>
   );
   else {
-    useEffect(() => router.push("/login"), [])
-    return <></>
+    return (
+      <div className='flex flex-col justify-center items-center'>
+        <div>Cant visit this page</div>
+        <div>You must login/register first</div>
+
+      </div>
+    )
   }
 }

@@ -32,7 +32,8 @@ export default function RootLayout({ children }) {
   const [rightBar, setRightBar] = useState(<FriendBar />)
   const [leftBar, setLeftBar] = useState(<Menu />)
   const [friendName, setFriendName] = useState("");
-  const [friendEmail, setFriendEmail] = useState(getValue("current-friend-email") || "");
+  const [friendEmail, setFriendEmail] = useState("");
+  useEffect(() => setFriendEmail(getValue("current-friend-email")), []);
   const refDay = Array.from({ length: 24 }, () => useRef(null));
   const daftarHari = [
     "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"
