@@ -1,7 +1,7 @@
 // 'Page.js' on the client side
 'use client'
 import { useEffect, useContext, useState } from 'react';
-import Master from '../components/master';
+import Master from '../components/master.jsx';
 import AppContext from '../api/context/AppContext';
 import TugasBar from '../components/tugasBar';
 import ProcessingAnimation from '../components/processing';

@@ -7,7 +7,7 @@ import Head from 'next/head';
 import { decodeToken, getValue, storeValue } from './api/context/functionality';
 import { useRouter } from 'next/navigation';
 import { generateMetadata } from './components/generateMetadata';
-import Master from './components/master';
+import Master from './components/master.jsx';
 import TugasBar from './components/tugasBar';
 import FriendBar from './components/friendBar';
 import JadwalBar from './components/jadwalBar';
@@ -18,14 +18,15 @@ import Menu from './components/left-bar';
 
 export default function RootLayout({ children }) {
 
-  const [isLogin, setIsLogin] = useState(getValue('login') || false);
+  const [isLogin, setIsLogin] = useState(false);
   const [users, setUsers] = useState(decodeToken());
 
   const [user, setUser] = useState(users || {});
   const [windowWidth, setWindowWidth] = useState(0);
-  const [currentTugasMenu, setCurrentTugasMenu] = useState(getValue("current-tugas-menu") || -1);
+  const [currentTugasMenu, setCurrentTugasMenu] = useState(-1);
+  useEffect(() => setCurrentTugasMenu(getValue("current-tugas-menu")), []);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [currentMenu, setCurrentMenu] = useState(getValue("current-menu") || 0);
+  const [currentMenu, setCurrentMenu] = useState(0);
   const headRef = useRef(null);
   const [currentLink, setCurrentLink] = useState("/");
   const [rightBar, setRightBar] = useState(<FriendBar />)
@@ -107,9 +108,13 @@ export default function RootLayout({ children }) {
     { name: "female4", href: "assets/female4.png" },
   ]
 
-  const [theme, setTheme] = useState(getValue('current-theme'));
+  const [theme, setTheme] = useState("");
 
-  const [currentDay, setCurrentDay] = useState(getValue("current-day") || 0);
+  const [currentDay, setCurrentDay] = useState(0);
+  useEffect(() => {
+    setTheme(getValue('current-theme'));
+    setCurrentDay(getValue("current-day"))
+  }, [])
   const [jadwal, setJadwal] = useState([]);
   const [tugas, setTugas] = useState([]);
   const router = useRouter();
@@ -201,6 +206,11 @@ export default function RootLayout({ children }) {
       setIsProcessing(false);
     }
   };
+
+  useEffect(() => {
+    setIsLogin(getValue('login'));
+    setCurrentMenu(getValue("current-menu"))
+  }, [])
 
   useEffect(() => {
     console.log(showItemJadwal);

@@ -2,8 +2,6 @@
 
 import { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/navigation'; // Import from 'next/router'
-import Master from '../components/master';
-import Friends from '../components/friendBar';
 import { decodeToken, getValue, storeValue } from '../api/context/functionality';
 import AppContext from '../api/context/AppContext';
 import Settings from './settings';

@@ -6,11 +6,8 @@ import AppContext from '../api/context/AppContext';
 import Head from 'next/head';
 import JadwalBar from './jadwalBar';
 
-interface PropsLayout {
-    children: ReactNode;
-}
 
-export default function Master({ children }: PropsLayout) {
+export default function Master({ children }) {
     const context = useContext(AppContext);
     const { light, dark } = color;
     const [windowWidth, setWindowWidth] = useState(0);
