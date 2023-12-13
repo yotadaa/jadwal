@@ -49,7 +49,7 @@ export default function Daftar() {
             });
 
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             setError(data.err || "");
             if (data.success) {
                 try {
@@ -66,7 +66,7 @@ export default function Daftar() {
                     });
 
                     const info = await login.json()
-                    console.log(info);
+                    // console.log(info);
                     setError(info.err || "");
                     if (info.success) {
                         setEmail("");

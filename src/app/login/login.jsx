@@ -50,7 +50,7 @@ export default function Login() {
             });
 
             const data = await res.json()
-            console.log(data);
+            // console.log(data);
             setError(data.err || "");
             if (data.success) {
                 setEmail("");
@@ -83,8 +83,8 @@ export default function Login() {
     }, [])
 
     useEffect(() => {
-        console.log(context.rightBar)
-        console.log(context.leftBar)
+        // console.log(context.rightBar)
+        // console.log(context.leftBar)
     }, [context.rightBar, context.leftBar])
 
     useEffect(() => {
