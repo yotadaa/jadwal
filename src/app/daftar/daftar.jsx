@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { color } from '../components/environment';
 import AppContext from '../api/context/AppContext';
 import ToggleTheme from '../components/toggle-button';
-import { getValue, storeValue } from '../api/context/functionality';
+import { decodeToken, getValue, storeValue } from '../api/context/functionality';
 import { useRouter } from 'next/navigation';
+import FriendBar from "../components/friendBar";
 
 export default function Daftar() {
     const router = useRouter();
@@ -74,6 +75,9 @@ export default function Daftar() {
                         setPasswordConfirm("");
                         storeValue('login', info.success);
                         storeValue('login-token', info.token);
+                        context.setUser(info.user);
+                        context.setIsLogin(true);
+                        context.setRightBar(<FriendBar />)
                         router.push("/akun");
                     }
                 } catch (error) {

@@ -8,7 +8,7 @@ import { decodeToken, storeValue } from "../api/context/functionality";
 export default function Profile(props) {
     const { showProfile, setShowProfile } = props.visible;
     const context = useContext(AppContext);
-    const [choosenPic, setChoosenPic] = useState(context.user.profile);
+    const [choosenPic, setChoosenPic] = useState("");
     const [showProcessing, setShowProcessing] = useState(false);
 
     const relog = async () => {
@@ -84,6 +84,10 @@ export default function Profile(props) {
         setShowProcessing(false);
         setShowProfile(false);
     }
+
+    useEffect(() => {
+        setChoosenPic(context.user.profile);
+    }, [context.user.profile])
 
 
     return (

@@ -180,7 +180,7 @@ export default function searchPage() {
                             item.deskripsi.toLowerCase().includes(query.toLowerCase())) &&
                         query.length > 0
                     ) return (
-                        <div key={index} className="flex gap-2 w-full">
+                        <div key={index} className={`${showTugas ? "flex" : "hidden"} gap-2 w-full`}>
                             <div className='flex justify-between gap-1 w-full items-center mb-2'
                                 onMouseEnter={() => {
                                     setDisplayImport(index);
@@ -206,7 +206,7 @@ export default function searchPage() {
                                     </div>
                                 </div>
 
-                                <div className={`${context.currentTugasMenu === -1 && displayImport === index ? "block" : "hidden"} shadow-xl rounded-full cursor-pointer hover:opacity-80 select-none bg-white p-1`}
+                                <div className={`${displayImport === index ? "block" : "hidden"} shadow-xl rounded-full cursor-pointer hover:opacity-80 select-none bg-white p-1`}
                                     onDoubleClick={() => {
                                         setCurrentTugas(item);
                                         setShowTaskAdd(true);
@@ -219,7 +219,7 @@ export default function searchPage() {
                                     />
                                 </div>
 
-                                <div className={`${context.currentTugasMenu === -1 && displayImport === index ? "block" : "hidden"} shadow-xl rounded-full cursor-pointer hover:opacity-80 select-none`}
+                                <div className={`${displayImport === index ? "block" : "hidden"} shadow-xl rounded-full cursor-pointer hover:opacity-80 select-none`}
                                     onDoubleClick={() => {
                                         removeItem(item.id)
                                     }}
@@ -228,17 +228,6 @@ export default function searchPage() {
                                         src='assets/trash.png'
                                         width={30}
                                         className='shadow-xl'
-                                    />
-                                </div>
-                                <div className={`${context.currentTugasMenu > -1 && displayImport === index ? "block" : "hidden"} shadow-lg bg-gray-100 rounded-full p-2 cursor-pointer hover:opacity-80 select-none`}
-                                    onDoubleClick={() => {
-                                        addFromFriends(item);
-                                    }}
-                                >
-                                    <img
-                                        src='assets/receive-mail.png'
-                                        width={20}
-                                        className=''
                                     />
                                 </div>
                             </div>

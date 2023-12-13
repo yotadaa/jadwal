@@ -9,6 +9,7 @@ import ProcessingAnimation from '../components/processing';
 import FriendBar from '../components/friendBar';
 import Notification from '../components/notification';
 import Menu from "../components/left-bar"
+import Search from '../components/search';
 // import LogoutConfirmation from '../components/logout-dialog';
 
 export default function Home() {
@@ -21,8 +22,12 @@ export default function Home() {
     const [showProcessing, setShowProcessing] = useState(false);
     const context = useContext(AppContext);
     const [initialShow, setInitialShow] = useState(false);
-    const { firstName, email } = context.user;
+    const [userName, setUserName] = useState(context.user.firstName);
     const [nama, setNama] = useState(context.user.firstName);
+
+    useEffect(() => {
+        // setUserName(context.user.firstName);
+    }, [context.user.firstName]);
 
 
     const [notif, setNotif] = useState([]);
@@ -69,7 +74,7 @@ export default function Home() {
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    email: user.email,
+                    email: context.user.email,
                     password: context.user.password,
                     todo: "relog"
                 }),
@@ -79,7 +84,7 @@ export default function Home() {
             if (data.success) {
                 storeValue('login', data.success);
                 storeValue('login-token', data.token);
-                context.setUser(decodeToken());
+                context.setUser(data.user);
             }
         } catch (error) {
             console.error('Unexpected error:', error);
@@ -95,7 +100,7 @@ export default function Home() {
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    email: user.email,
+                    email: context.user.email,
                     passwordLama: pc,
                     password: password,
                     todo: "ganti-password"
@@ -124,7 +129,7 @@ export default function Home() {
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    email: user.email,
+                    email: context.user.email,
                     username: nama,
                     todo: "ganti-nama"
                 }),
@@ -157,23 +162,23 @@ export default function Home() {
 
 
     useEffect(() => {
-        // if (!context.user)
-        // getDepedencies();
-        context.setCurrentMenu(4)
+        context.setCurrentMenu(4);
     }, [])
 
     useEffect(() => {
         context.setLeftBar(<Menu />)
-        context.setRightBar(<FriendBar />)
-        if (!context.isLogin) {
-            router.push("/login");
+        context.setRightBar(<div className="p-3"><Search /></div>)
+    }, [context.isLogin]); // Add isLogin and user to the dependency array
+    useEffect(() => {
+        if (!getValue("login")) {
+            router.push("/login")
         }
-    }, []); // Add isLogin and user to the dependency array
+    }, [])
 
-    if (context.isLogin) return (
+    return (
         <div
         >
-            <div className='p-1 bg-emerald-200 shadow-md relative rounded-xl mt-5'
+            <div className='p-1 bg-emerald-300 shadow-md relative rounded-xl mt-5'
             >
                 <div className='text-lg relative font-bold w-full flex justify-end mt-4'>
                     <div className='flex'>
@@ -196,7 +201,7 @@ export default function Home() {
                         <div>
                             {context.user && context.profilePicture.map((item, index) => {
                                 if (context.user.profile === item.name) return (
-                                    <div>
+                                    <div key={index}>
                                         <img src={item.href}
                                             width={80}
                                             className='border-2 border-black rounded-full hover:opacity-80 shadow-md select-none cursor-pointer'
@@ -206,8 +211,8 @@ export default function Home() {
                             })}
                         </div>
                         <div>
-                            <div className='text-xl font-bold'>{context.user.firstName || ""}</div>
-                            <div className=''>{email}</div>
+                            <div className='text-xl font-bold'>{userName || ""}</div>
+                            <div className=''>{context.user.email}</div>
                         </div>
                     </div>
                 </div>
@@ -240,9 +245,9 @@ export default function Home() {
                             className={`${modifyNama ? "opacity-70" : "opacity-100"} p-0 mt-0 shadow-md cursor-pointer select-none rounded-full`}
                             onClick={(event) => {
                                 setModifyNama(!modifyNama);
-                                if (!modifyNama && nama !== user.firstName) {
+                                if (!modifyNama && nama !== context.user.firstName) {
                                     gantiName();
-                                } else if (!modifyNama && nama === user.firstName) {
+                                } else if (!modifyNama && nama === context.user.firstName) {
                                     insertNotif("Pilih nama yang berbeda!", true);
                                 }
                             }}

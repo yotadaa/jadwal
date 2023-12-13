@@ -16,11 +16,11 @@ export default function Search() {
                 <p className="ml-2 text-gray-500 font-sans">
                     Cari...
                 </p>
-                <div class={`${isHover ? "hover-round" : ""} `}>
+                <div className={`${isHover ? "hover-round" : ""} `}>
                     <img
                         src="assets/search.png"
                         width="25"
-                        class="p-2 w-10 cursor-pointer rounded-full"
+                        className="p-2 w-10 cursor-pointer rounded-full"
                         onClick={() => {
                             router.push("/cari");
                             context.setCurrentMenu(-1);

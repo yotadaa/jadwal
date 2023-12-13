@@ -43,7 +43,7 @@ export default function Menu() {
                                 }
                             }
                             else if (index === 4 && index !== context.currentMenu) {
-                                context.setRightBar(<FriendBar />)
+                                context.setRightBar(<div></div>)
                                 context.getTugas(context.user.email);
                             }
                             else {

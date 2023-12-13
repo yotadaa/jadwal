@@ -367,6 +367,9 @@ export default function Page() {
       <div className='flex flex-col justify-center items-center'>
         <div>Cant visit this page</div>
         <div>You must login/register first</div>
+        <div>
+          <a href="/login" className='hover:opacity-80 hover:text-red-500 p-3 bg-white rounded-md shadow-md mt-5'>Login page</a>
+        </div>
 
       </div>
     )

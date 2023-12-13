@@ -13,7 +13,7 @@ export default function Settings() {
 
     const style = 'bg-emerald-300 hover:shadow-lg mb-2 p-1 rounded-full px-2 cursor-pointer select-none hover:opacity-80'
     useEffect(() => {
-        storeValue("current-theme", !context.theme)
+        // storeValue("current-theme", !context.theme)
     }, [context.theme])
 
     return (

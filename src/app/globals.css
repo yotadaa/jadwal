@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.akun-prev {
+  background: url('/assets/bg.png');
+  /* opacity: 0.5; */
+  /* Set your desired opacity value */
+  /* Other styling properties as needed */
+}
+
+
 * {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

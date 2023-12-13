@@ -7,12 +7,12 @@ import { getValue, storeValue } from '../api/context/functionality';
 export default function ToggleTheme() {
     const [isDarkMode, setDarkMode] = useState(false);
     useEffect(() => {
-        setDarkMode(getValue("current-theme"));
+        setDarkMode(context.theme);
     }, [])
     const context = useContext(AppContext);
 
     useEffect(() => {
-        storeValue("current-theme", checked);
+        // storeValue("current-theme", context.theme);
     }, [context.theme])
 
     const toggleDarkMode = (checked) => {

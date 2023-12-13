@@ -12,6 +12,7 @@ import TugasBar from './components/tugasBar';
 import FriendBar from './components/friendBar';
 import JadwalBar from './components/jadwalBar';
 import Menu from './components/left-bar';
+import Search from './components/search';
 // import { Metadata } from 'next';
 
 
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
   const [currentMenu, setCurrentMenu] = useState(0);
   const headRef = useRef(null);
   const [currentLink, setCurrentLink] = useState("/");
-  const [rightBar, setRightBar] = useState(<FriendBar />)
+  const [rightBar, setRightBar] = useState(<div className="p-3"><Search /></div>)
   const [leftBar, setLeftBar] = useState(<Menu />)
   const [friendName, setFriendName] = useState("");
   const [friendEmail, setFriendEmail] = useState("");
@@ -109,7 +110,7 @@ export default function RootLayout({ children }) {
     { name: "female4", href: "assets/female4.png" },
   ]
 
-  const [theme, setTheme] = useState("");
+  const [theme, setTheme] = useState(true);
 
   const [currentDay, setCurrentDay] = useState(0);
   useEffect(() => {
@@ -216,7 +217,7 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     console.log(showItemJadwal);
     setCurrentDay(getValue("current-day") || 0);
-    setTheme(getValue('current-theme'));
+    // setTheme(getValue('current-theme'));
     setIsLogin(getValue("login") || false);
     setWindowWidth(window.innerWidth);
     getJadwal();
@@ -245,7 +246,7 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     if (currentMenu === 3) setRightBar(<TugasBar />)
-    else if (currentMenu === 4) setRightBar(<FriendBar />)
+    else if (currentMenu === 4) setRightBar(<div className="p-3"><Search /></div>)
     else if (currentMenu !== 4 || currentMenu !== 3 && window.location.href !== "/login" || window.location.href !== "/daftar") setRightBar(<JadwalBar />)
   }, [])
 

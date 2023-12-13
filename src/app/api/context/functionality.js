@@ -77,7 +77,6 @@ export function checkLocalStorage(key) {
 
 export function decodeToken() {
     const isLogin = checkLocalStorage('login') || false;
-    const loginInfo = isLogin ? checkLocalStorage('login-token') : {};
-    // console.log(loginInfo + " this is the token");
+    const loginInfo = isLogin ? getValue("login-token") : "";
     return isLogin ? jwtDecode(loginInfo)._doc : {};
 }

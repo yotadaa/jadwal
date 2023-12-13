@@ -57,8 +57,9 @@ export default function Login() {
                 setPassword("");
                 storeValue('login', data.success);
                 storeValue('login-token', data.token);
-                context.setUser(decodeToken());
-                router.push('/akun');
+                context.setUser(data.user);
+                context.getTugas(data.user.email);
+                context.setIsLogin(true);
             }
         } catch (error) {
             console.error('Unexpected error:', error);
@@ -86,6 +87,21 @@ export default function Login() {
         console.log(context.leftBar)
     }, [context.rightBar, context.leftBar])
 
+    useEffect(() => {
+        if (context.isLogin) {
+            try {
+                if (context.user) {
+                    context.getJadwal();
+                }
+            } catch (err) {
+
+            } finally {
+                storeValue("login", true);
+                router.push("/akun");
+            }
+        }
+    }, [context.isLogin])
+
     if (!context.isLogin) return (
         <div
             ref={parent}
@@ -94,9 +110,7 @@ export default function Login() {
             {/* <div className={`expanding-background `} style={{ zIndex: 5 }}></div> */}
             <div className='absolute right-10 top-10' style={{ zIndex: 9 }}
             >
-                <ToggleTheme
-
-                />
+                <ToggleTheme />
             </div>
             <form
                 className={`w-96 shadow-xl ${currentColor['form-auth-bg']} rounded-xl p-10 pb-15`}
@@ -160,6 +174,9 @@ export default function Login() {
         </div>
     )
     else {
+        // useEffect(() => {
+        //     window.location.href = "/akun";
+        // }, [])
         return (
             <div>
                 <div>You have logged in, go to <a className='text-red-500' href="/akun">Akun page</a></div>
