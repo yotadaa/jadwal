@@ -38,7 +38,7 @@
     "src/app/login/login.jsx",
     "src/app/login/page.jsx",
     "src/app/api/mongos/users/route.js"
-, "src/app/page.jsx"  ],
+, "src/app/page.jsx", "src/app/daftar/daftar.jsx", "src/app/layout.jsx", "src/app/components/master.jsx"  ],
   "exclude": [
     "node_modules"
   ]
