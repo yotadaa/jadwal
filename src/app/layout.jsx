@@ -172,7 +172,7 @@ export default function RootLayout({ children }) {
       const data = await res.json();
       if (data.success) {
         setJadwal(data.data);
-        console.log(data.success);
+        // console.log(data.success);
       } else {
         console.error("Error fetching jadwal:", data.error);
       }
@@ -198,7 +198,7 @@ export default function RootLayout({ children }) {
       const data = await res.json();
       if (data.success) {
         setTugas(data.data);
-        console.log(data.success);
+        // console.log(data.success);
       } else {
         console.error("Error fetching jadwal:", data.error);
       }
@@ -215,7 +215,7 @@ export default function RootLayout({ children }) {
   }, [])
 
   useEffect(() => {
-    console.log(showItemJadwal);
+    // console.log(showItemJadwal);
     setCurrentDay(getValue("current-day") || 0);
     // setTheme(getValue('current-theme'));
     setIsLogin(getValue("login") || false);
@@ -251,16 +251,7 @@ export default function RootLayout({ children }) {
   }, [])
 
   useEffect(() => {
-    // getJadwal();
-    // if (user) {
-    //   getTugas(user.email);
-    // }
     document.title = "Jadwalku";
-    const metaDescriptionTag = document.querySelector('meta[name="description"]');
-
-    if (metaDescriptionTag) {
-      metaDescriptionTag.setAttribute('content', 'Simple schedule and app management app');
-    }
     var linkIcon = document.querySelector('link[rel="icon"]');
     if (linkIcon) linkIcon.setAttribute('href', 'assets/schedule.ico');
 
@@ -270,6 +261,36 @@ export default function RootLayout({ children }) {
       newMetaTag.content = 'schedule, task, schedule management app';
       document.head.appendChild(newMetaTag);
     }
+
+    var authorMetaTag = document.createElement('meta');
+    if (authorMetaTag) {
+      authorMetaTag.name = 'author';
+      authorMetaTag.content = 'Mukhtada Nasution';
+      document.head.appendChild(authorMetaTag);
+    }
+    var viewportMetaTag = document.createElement('meta');
+    if (viewportMetaTag) {
+      viewportMetaTag.name = 'viewport';
+      viewportMetaTag.content = 'width=device-width, initial-scale=1.0';
+      document.head.appendChild(viewportMetaTag);
+    }
+
+    var languageMetaTag = document.createElement('meta');
+    if (languageMetaTag) {
+      languageMetaTag.httpEquiv = 'Content-Language';
+      languageMetaTag.content = 'id-ID'; // Replace with your language code
+      document.head.appendChild(languageMetaTag);
+    }
+
+    var robotsMetaTag = document.createElement('meta');
+    if (robotsMetaTag) {
+      robotsMetaTag.name = 'robots';
+      robotsMetaTag.content = 'index, follow'; // Adjust as needed
+      document.head.appendChild(robotsMetaTag);
+    }
+
+
+
   }, []);
 
   return (

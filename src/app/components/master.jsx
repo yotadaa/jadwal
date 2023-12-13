@@ -36,7 +36,7 @@ export default function Master({ children }) {
     }, [windowWidth])
 
     useEffect(() => {
-        console.log(window.location.pathname)
+        // console.log(window.location.pathname)
         if (context.jadwal && context.user) {
             setInitialShow(true);
         } else setInitialShow(false);

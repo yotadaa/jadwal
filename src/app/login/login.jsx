@@ -144,6 +144,7 @@ export default function Login() {
                         required
                     />
                     <img
+                        alt="password-det"
                         className={`select-none cursor-pointer relative top-0 right-0 ${context.theme ? 'bg-gray-200' : 'bg-gray-300 '} hover:opacity-80 w-10 h-10 p-2 rounded-full`}
                         src={showPassword ? 'vis-on.svg' : 'vis-off.svg'}
                         style={{ color: 'white' }}
