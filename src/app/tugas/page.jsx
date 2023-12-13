@@ -142,10 +142,15 @@ export default function Page() {
         }
     }, [currentItem]);
 
+    useEffect(() => {
+        context.setCurrentTugasMenu(-1);
+    }, [])
+
 
     useEffect(() => {
         setTugas(context.tugas);
         console.log(context.tugas);
+        context.setRightBar(<TugasBar />)
     }, [context.tugas]);
 
 
@@ -200,7 +205,8 @@ export default function Page() {
 
                             <div className={`${context.currentTugasMenu === -1 && displayImport === index ? "block" : "hidden"} shadow-xl rounded-full cursor-pointer hover:opacity-80 select-none`}
                                 onDoubleClick={() => {
-                                    removeItem(item.id)
+                                    removeItem(item.id);
+                                    setCurrentItem({})
                                 }}
                             >
                                 <img

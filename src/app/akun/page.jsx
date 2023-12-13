@@ -26,7 +26,7 @@ export default function Home() {
     const [nama, setNama] = useState(context.user.firstName);
 
     useEffect(() => {
-        // setUserName(context.user.firstName);
+        setUserName(context.user.firstName);
     }, [context.user.firstName]);
 
 
