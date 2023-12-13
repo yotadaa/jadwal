@@ -54,7 +54,7 @@ export default function Menu() {
                                 context.setRightBar(<JadwalBar />)
                             }
                         }}>
-                        <div><img src={item.href} width={25} className='shadow-md rounded-full' /></div>
+                        <div><img alt={item.name.split(" ").join("-")} src={item.href} width={25} className='shadow-md rounded-full' /></div>
                         <div
                             className={` font-bold`}
                         >
