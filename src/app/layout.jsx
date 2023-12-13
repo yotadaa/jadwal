@@ -255,6 +255,14 @@ export default function RootLayout({ children }) {
     var linkIcon = document.querySelector('link[rel="icon"]');
     if (linkIcon) linkIcon.setAttribute('href', 'assets/schedule.ico');
 
+    const metaDescriptionTag = document.createElement('meta');
+    if (metaDescriptionTag) {
+      metaDescriptionTag.name = 'description';
+      metaDescriptionTag.content = 'Aplikasi manajemen tugas dan jadwal sederhana. Aplikasi untuk mengolah tugas dan jadwal simpelmu';
+      document.head.appendChild(metaDescriptionTag);
+    }
+
+
     var newMetaTag = document.createElement('meta');
     if (newMetaTag) {
       newMetaTag.name = 'keywords';
